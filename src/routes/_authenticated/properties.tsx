@@ -85,9 +85,9 @@ function PropertiesPage() {
         const { error } = await supabase.from("properties").update(payload).eq("id", editing);
         if (error) throw error;
       } else {
-        const { error } = await supabase
-          .from("properties")
-          .insert({ ...payload, org_id: session!.profile!.org_id });
+        const orgId = session?.profile?.org_id;
+        if (!orgId) throw new Error("No organization found for your account.");
+        const { error } = await supabase.from("properties").insert({ ...payload, org_id: orgId });
         if (error) throw error;
       }
     },
