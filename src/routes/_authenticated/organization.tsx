@@ -55,7 +55,7 @@ function OrganizationPage() {
       <PageHeader title="Organization" subtitle="Company details used across invoices and tenant communication." />
       <div className="card-surface p-6">
         <div className="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
-          Status <StatusChip value={org?.status} />
+          Status <StatusChip value={org?.status ?? null} />
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-1.5 sm:col-span-2">

@@ -33,7 +33,7 @@ function SettingsPage() {
       <div className="card-surface divide-y">
         <div className="flex items-center justify-between p-5">
           <span className="text-sm font-medium">Role</span>
-          <StatusChip value={data?.role} />
+          <StatusChip value={data?.role ?? null} />
         </div>
         {rows.map((r) => (
           <div key={r.label} className="flex items-center justify-between p-5 text-sm">
