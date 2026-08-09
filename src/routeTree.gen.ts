@@ -17,6 +17,7 @@ import { Route as AuthenticatedDocumentsRouteImport } from './routes/_authentica
 import { Route as AuthenticatedInvitationsRouteImport } from './routes/_authenticated/invitations'
 import { Route as AuthenticatedInvoicesRouteImport } from './routes/_authenticated/invoices'
 import { Route as AuthenticatedMaintenanceRouteImport } from './routes/_authenticated/maintenance'
+import { Route as AuthenticatedMyHomeRouteImport } from './routes/_authenticated/my-home'
 import { Route as AuthenticatedOrganizationRouteImport } from './routes/_authenticated/organization'
 import { Route as AuthenticatedPaymentsRouteImport } from './routes/_authenticated/payments'
 import { Route as AuthenticatedPropertiesRouteImport } from './routes/_authenticated/properties'
@@ -66,6 +67,11 @@ const AuthenticatedMaintenanceRoute =
     path: '/maintenance',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedMyHomeRoute = AuthenticatedMyHomeRouteImport.update({
+  id: '/my-home',
+  path: '/my-home',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedOrganizationRoute =
   AuthenticatedOrganizationRouteImport.update({
     id: '/organization',
@@ -112,6 +118,7 @@ export interface FileRoutesByFullPath {
   '/invitations': typeof AuthenticatedInvitationsRoute
   '/invoices': typeof AuthenticatedInvoicesRoute
   '/maintenance': typeof AuthenticatedMaintenanceRoute
+  '/my-home': typeof AuthenticatedMyHomeRoute
   '/organization': typeof AuthenticatedOrganizationRoute
   '/payments': typeof AuthenticatedPaymentsRoute
   '/properties': typeof AuthenticatedPropertiesRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByTo {
   '/invitations': typeof AuthenticatedInvitationsRoute
   '/invoices': typeof AuthenticatedInvoicesRoute
   '/maintenance': typeof AuthenticatedMaintenanceRoute
+  '/my-home': typeof AuthenticatedMyHomeRoute
   '/organization': typeof AuthenticatedOrganizationRoute
   '/payments': typeof AuthenticatedPaymentsRoute
   '/properties': typeof AuthenticatedPropertiesRoute
@@ -146,6 +154,7 @@ export interface FileRoutesById {
   '/_authenticated/invitations': typeof AuthenticatedInvitationsRoute
   '/_authenticated/invoices': typeof AuthenticatedInvoicesRoute
   '/_authenticated/maintenance': typeof AuthenticatedMaintenanceRoute
+  '/_authenticated/my-home': typeof AuthenticatedMyHomeRoute
   '/_authenticated/organization': typeof AuthenticatedOrganizationRoute
   '/_authenticated/payments': typeof AuthenticatedPaymentsRoute
   '/_authenticated/properties': typeof AuthenticatedPropertiesRoute
@@ -164,6 +173,7 @@ export interface FileRouteTypes {
     | '/invitations'
     | '/invoices'
     | '/maintenance'
+    | '/my-home'
     | '/organization'
     | '/payments'
     | '/properties'
@@ -180,6 +190,7 @@ export interface FileRouteTypes {
     | '/invitations'
     | '/invoices'
     | '/maintenance'
+    | '/my-home'
     | '/organization'
     | '/payments'
     | '/properties'
@@ -197,6 +208,7 @@ export interface FileRouteTypes {
     | '/_authenticated/invitations'
     | '/_authenticated/invoices'
     | '/_authenticated/maintenance'
+    | '/_authenticated/my-home'
     | '/_authenticated/organization'
     | '/_authenticated/payments'
     | '/_authenticated/properties'
@@ -270,6 +282,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMaintenanceRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/my-home': {
+      id: '/_authenticated/my-home'
+      path: '/my-home'
+      fullPath: '/my-home'
+      preLoaderRoute: typeof AuthenticatedMyHomeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/organization': {
       id: '/_authenticated/organization'
       path: '/organization'
@@ -328,6 +347,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedInvitationsRoute: typeof AuthenticatedInvitationsRoute
   AuthenticatedInvoicesRoute: typeof AuthenticatedInvoicesRoute
   AuthenticatedMaintenanceRoute: typeof AuthenticatedMaintenanceRoute
+  AuthenticatedMyHomeRoute: typeof AuthenticatedMyHomeRoute
   AuthenticatedOrganizationRoute: typeof AuthenticatedOrganizationRoute
   AuthenticatedPaymentsRoute: typeof AuthenticatedPaymentsRoute
   AuthenticatedPropertiesRoute: typeof AuthenticatedPropertiesRoute
@@ -343,6 +363,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedInvitationsRoute: AuthenticatedInvitationsRoute,
   AuthenticatedInvoicesRoute: AuthenticatedInvoicesRoute,
   AuthenticatedMaintenanceRoute: AuthenticatedMaintenanceRoute,
+  AuthenticatedMyHomeRoute: AuthenticatedMyHomeRoute,
   AuthenticatedOrganizationRoute: AuthenticatedOrganizationRoute,
   AuthenticatedPaymentsRoute: AuthenticatedPaymentsRoute,
   AuthenticatedPropertiesRoute: AuthenticatedPropertiesRoute,
