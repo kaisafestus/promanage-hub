@@ -5,11 +5,29 @@ import {
   Mail, Settings, ChevronDown, FileText, Building, ChevronRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useSession } from "@/lib/session";
 
 type Item = { label: string; to: string; icon: React.ElementType };
 type Section = { label: string; items: Item[] };
 
 const MAIN: Item[] = [{ label: "Dashboard", to: "/dashboard", icon: LayoutDashboard }];
+
+const TENANT_MAIN: Item[] = [{ label: "My home", to: "/tenant-dashboard", icon: LayoutDashboard }];
+
+const TENANT_SECTIONS: Section[] = [
+  {
+    label: "My tenancy",
+    items: [
+      { label: "Lease & unit", to: "/my-home", icon: DoorOpen },
+      { label: "Invoices & payments", to: "/my-invoices", icon: Receipt },
+      { label: "Maintenance", to: "/my-maintenance", icon: Wrench },
+    ],
+  },
+  {
+    label: "Settings",
+    items: [{ label: "General", to: "/settings", icon: Settings }],
+  },
+];
 
 const SECTIONS: Section[] = [
   {
@@ -46,10 +64,15 @@ const SECTIONS: Section[] = [
 
 export function SidebarContentBody({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const { data: session } = useSession();
+  const isTenant = session?.role === "TENANT";
+  const main = isTenant ? TENANT_MAIN : MAIN;
+  const sections = isTenant ? TENANT_SECTIONS : SECTIONS;
   const [open, setOpen] = useState<Record<string, boolean>>({
     Financials: true,
     "Property / Unit": true,
     People: true,
+    "My tenancy": true,
     Settings: false,
   });
 
@@ -81,13 +104,15 @@ export function SidebarContentBody({ onNavigate }: { onNavigate?: () => void }) 
         </div>
         <div className="leading-tight">
           <div className="text-sm font-bold text-navy-foreground">PropertyMS</div>
-          <div className="text-[10px] uppercase tracking-widest text-cyan-active">Landlord</div>
+          <div className="text-[10px] uppercase tracking-widest text-cyan-active">
+            {isTenant ? "Tenant" : session?.role === "ADMIN" ? "Admin" : "Landlord"}
+          </div>
         </div>
       </div>
 
       <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-4">
-        {MAIN.map(row)}
-        {SECTIONS.map((section) => (
+        {main.map(row)}
+        {sections.map((section) => (
           <div key={section.label} className="pt-3">
             <button
               type="button"
