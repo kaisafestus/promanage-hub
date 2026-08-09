@@ -949,6 +949,9 @@ export type Database = {
         Returns: boolean
       }
       is_manager: { Args: never; Returns: boolean }
+      my_property_ids: { Args: never; Returns: string[] }
+      my_tenant_ids: { Args: never; Returns: string[] }
+      my_unit_ids: { Args: never; Returns: string[] }
     }
     Enums: {
       app_role: "ADMIN" | "LANDLORD" | "TENANT" | "VENDOR" | "APPLICANT"
