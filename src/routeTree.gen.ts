@@ -18,6 +18,8 @@ import { Route as AuthenticatedInvitationsRouteImport } from './routes/_authenti
 import { Route as AuthenticatedInvoicesRouteImport } from './routes/_authenticated/invoices'
 import { Route as AuthenticatedMaintenanceRouteImport } from './routes/_authenticated/maintenance'
 import { Route as AuthenticatedMyHomeRouteImport } from './routes/_authenticated/my-home'
+import { Route as AuthenticatedMyInvoicesRouteImport } from './routes/_authenticated/my-invoices'
+import { Route as AuthenticatedMyMaintenanceRouteImport } from './routes/_authenticated/my-maintenance'
 import { Route as AuthenticatedOrganizationRouteImport } from './routes/_authenticated/organization'
 import { Route as AuthenticatedPaymentsRouteImport } from './routes/_authenticated/payments'
 import { Route as AuthenticatedPropertiesRouteImport } from './routes/_authenticated/properties'
@@ -72,6 +74,17 @@ const AuthenticatedMyHomeRoute = AuthenticatedMyHomeRouteImport.update({
   path: '/my-home',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedMyInvoicesRoute = AuthenticatedMyInvoicesRouteImport.update({
+  id: '/my-invoices',
+  path: '/my-invoices',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMyMaintenanceRoute =
+  AuthenticatedMyMaintenanceRouteImport.update({
+    id: '/my-maintenance',
+    path: '/my-maintenance',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedOrganizationRoute =
   AuthenticatedOrganizationRouteImport.update({
     id: '/organization',
@@ -119,6 +132,8 @@ export interface FileRoutesByFullPath {
   '/invoices': typeof AuthenticatedInvoicesRoute
   '/maintenance': typeof AuthenticatedMaintenanceRoute
   '/my-home': typeof AuthenticatedMyHomeRoute
+  '/my-invoices': typeof AuthenticatedMyInvoicesRoute
+  '/my-maintenance': typeof AuthenticatedMyMaintenanceRoute
   '/organization': typeof AuthenticatedOrganizationRoute
   '/payments': typeof AuthenticatedPaymentsRoute
   '/properties': typeof AuthenticatedPropertiesRoute
@@ -136,6 +151,8 @@ export interface FileRoutesByTo {
   '/invoices': typeof AuthenticatedInvoicesRoute
   '/maintenance': typeof AuthenticatedMaintenanceRoute
   '/my-home': typeof AuthenticatedMyHomeRoute
+  '/my-invoices': typeof AuthenticatedMyInvoicesRoute
+  '/my-maintenance': typeof AuthenticatedMyMaintenanceRoute
   '/organization': typeof AuthenticatedOrganizationRoute
   '/payments': typeof AuthenticatedPaymentsRoute
   '/properties': typeof AuthenticatedPropertiesRoute
@@ -155,6 +172,8 @@ export interface FileRoutesById {
   '/_authenticated/invoices': typeof AuthenticatedInvoicesRoute
   '/_authenticated/maintenance': typeof AuthenticatedMaintenanceRoute
   '/_authenticated/my-home': typeof AuthenticatedMyHomeRoute
+  '/_authenticated/my-invoices': typeof AuthenticatedMyInvoicesRoute
+  '/_authenticated/my-maintenance': typeof AuthenticatedMyMaintenanceRoute
   '/_authenticated/organization': typeof AuthenticatedOrganizationRoute
   '/_authenticated/payments': typeof AuthenticatedPaymentsRoute
   '/_authenticated/properties': typeof AuthenticatedPropertiesRoute
@@ -174,6 +193,8 @@ export interface FileRouteTypes {
     | '/invoices'
     | '/maintenance'
     | '/my-home'
+    | '/my-invoices'
+    | '/my-maintenance'
     | '/organization'
     | '/payments'
     | '/properties'
@@ -191,6 +212,8 @@ export interface FileRouteTypes {
     | '/invoices'
     | '/maintenance'
     | '/my-home'
+    | '/my-invoices'
+    | '/my-maintenance'
     | '/organization'
     | '/payments'
     | '/properties'
@@ -209,6 +232,8 @@ export interface FileRouteTypes {
     | '/_authenticated/invoices'
     | '/_authenticated/maintenance'
     | '/_authenticated/my-home'
+    | '/_authenticated/my-invoices'
+    | '/_authenticated/my-maintenance'
     | '/_authenticated/organization'
     | '/_authenticated/payments'
     | '/_authenticated/properties'
@@ -289,6 +314,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMyHomeRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/my-invoices': {
+      id: '/_authenticated/my-invoices'
+      path: '/my-invoices'
+      fullPath: '/my-invoices'
+      preLoaderRoute: typeof AuthenticatedMyInvoicesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/my-maintenance': {
+      id: '/_authenticated/my-maintenance'
+      path: '/my-maintenance'
+      fullPath: '/my-maintenance'
+      preLoaderRoute: typeof AuthenticatedMyMaintenanceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/organization': {
       id: '/_authenticated/organization'
       path: '/organization'
@@ -348,6 +387,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedInvoicesRoute: typeof AuthenticatedInvoicesRoute
   AuthenticatedMaintenanceRoute: typeof AuthenticatedMaintenanceRoute
   AuthenticatedMyHomeRoute: typeof AuthenticatedMyHomeRoute
+  AuthenticatedMyInvoicesRoute: typeof AuthenticatedMyInvoicesRoute
+  AuthenticatedMyMaintenanceRoute: typeof AuthenticatedMyMaintenanceRoute
   AuthenticatedOrganizationRoute: typeof AuthenticatedOrganizationRoute
   AuthenticatedPaymentsRoute: typeof AuthenticatedPaymentsRoute
   AuthenticatedPropertiesRoute: typeof AuthenticatedPropertiesRoute
@@ -364,6 +405,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedInvoicesRoute: AuthenticatedInvoicesRoute,
   AuthenticatedMaintenanceRoute: AuthenticatedMaintenanceRoute,
   AuthenticatedMyHomeRoute: AuthenticatedMyHomeRoute,
+  AuthenticatedMyInvoicesRoute: AuthenticatedMyInvoicesRoute,
+  AuthenticatedMyMaintenanceRoute: AuthenticatedMyMaintenanceRoute,
   AuthenticatedOrganizationRoute: AuthenticatedOrganizationRoute,
   AuthenticatedPaymentsRoute: AuthenticatedPaymentsRoute,
   AuthenticatedPropertiesRoute: AuthenticatedPropertiesRoute,

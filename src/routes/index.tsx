@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { roleHome, type AppRole } from "@/lib/session";
 
 export const Route = createFileRoute("/")({
   ssr: false,
@@ -21,9 +22,16 @@ export const Route = createFileRoute("/")({
 function Index() {
   const navigate = useNavigate();
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      navigate({ to: data.session ? "/dashboard" : "/auth", replace: true });
-    });
+    (async () => {
+      const { data } = await supabase.auth.getSession();
+      const user = data.session?.user;
+      if (!user) {
+        navigate({ to: "/auth", replace: true });
+        return;
+      }
+      const { data: roles } = await supabase.from("user_roles").select("role").eq("user_id", user.id);
+      navigate({ to: roleHome((roles?.[0]?.role ?? "LANDLORD") as AppRole), replace: true });
+    })();
   }, [navigate]);
 
   return (
