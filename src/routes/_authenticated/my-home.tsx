@@ -68,7 +68,7 @@ function MyHomePage() {
             <Row label="Size" value={unit?.size_sq_ft ? `${unit.size_sq_ft} sq ft` : "—"} />
             <div className="col-span-1">
               <dt className="text-xs uppercase tracking-wide text-muted-foreground">Status</dt>
-              <dd className="mt-1"><StatusChip value={unit?.status} /></dd>
+              <dd className="mt-1"><StatusChip value={unit?.status ?? null} /></dd>
             </div>
           </dl>
         </div>
