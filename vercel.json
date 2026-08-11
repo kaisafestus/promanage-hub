@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "outputDirectory": "dist/client",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "api/server/**",
+      "runtime": "nodejs18.x"
+    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/index" }
+  ]
+}
