@@ -106,7 +106,7 @@ function InvitationsPage() {
       const invitationUrl = `${window.location.origin}/auth?invitation_token=${data.token}`;
 
       try {
-        await supabase.functions.invoke("send-invitation", {
+        const result = await supabase.functions.invoke("send-invitation", {
           body: {
             email: data.email,
             role: data.role,
@@ -116,12 +116,20 @@ function InvitationsPage() {
             invitationUrl,
           },
         });
+        return result;
       } catch (emailError) {
         console.error("Failed to send invitation email:", emailError);
+        return { error: emailError };
       }
     },
-    onSuccess: () => {
-      toast.success("Invitation created and email sent");
+    onSuccess: (result: unknown) => {
+      const skipped = (result as { data?: { skipped?: boolean } } | null | undefined)?.data
+        ?.skipped;
+      if (skipped) {
+        toast.success("Invitation created. Email sending is pending configuration.");
+      } else {
+        toast.success("Invitation created and email sent");
+      }
       setOpen(false);
       setForm({ ...EMPTY });
       queryClient.invalidateQueries({ queryKey: ["invitations"] });
