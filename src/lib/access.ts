@@ -19,6 +19,10 @@ export const ROUTE_ACCESS: { prefix: string; roles: AppRole[] }[] = [
   { prefix: "/my-invoices", roles: ["TENANT"] },
   { prefix: "/my-maintenance", roles: ["TENANT"] },
   { prefix: "/my-documents", roles: ["TENANT"] },
+  { prefix: "/vendor-dashboard", roles: ["VENDOR"] },
+  { prefix: "/vendor-maintenance", roles: ["VENDOR"] },
+  { prefix: "/vendor-expenses", roles: ["VENDOR"] },
+  { prefix: "/vendor-documents", roles: ["VENDOR"] },
   { prefix: "/settings", roles: ["LANDLORD", "ADMIN", "TENANT", "VENDOR", "APPLICANT"] },
 ];
 

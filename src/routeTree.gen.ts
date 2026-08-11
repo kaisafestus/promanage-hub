@@ -17,6 +17,7 @@ import { Route as AuthenticatedDocumentsRouteImport } from './routes/_authentica
 import { Route as AuthenticatedInvitationsRouteImport } from './routes/_authenticated/invitations'
 import { Route as AuthenticatedInvoicesRouteImport } from './routes/_authenticated/invoices'
 import { Route as AuthenticatedMaintenanceRouteImport } from './routes/_authenticated/maintenance'
+import { Route as AuthenticatedMyDocumentsRouteImport } from './routes/_authenticated/my-documents'
 import { Route as AuthenticatedMyHomeRouteImport } from './routes/_authenticated/my-home'
 import { Route as AuthenticatedMyInvoicesRouteImport } from './routes/_authenticated/my-invoices'
 import { Route as AuthenticatedMyMaintenanceRouteImport } from './routes/_authenticated/my-maintenance'
@@ -27,6 +28,10 @@ import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedTenantDashboardRouteImport } from './routes/_authenticated/tenant-dashboard'
 import { Route as AuthenticatedTenantsRouteImport } from './routes/_authenticated/tenants'
 import { Route as AuthenticatedUnitsRouteImport } from './routes/_authenticated/units'
+import { Route as AuthenticatedVendorDashboardRouteImport } from './routes/_authenticated/vendor-dashboard'
+import { Route as AuthenticatedVendorDocumentsRouteImport } from './routes/_authenticated/vendor-documents'
+import { Route as AuthenticatedVendorExpensesRouteImport } from './routes/_authenticated/vendor-expenses'
+import { Route as AuthenticatedVendorMaintenanceRouteImport } from './routes/_authenticated/vendor-maintenance'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -67,6 +72,12 @@ const AuthenticatedMaintenanceRoute =
   AuthenticatedMaintenanceRouteImport.update({
     id: '/maintenance',
     path: '/maintenance',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedMyDocumentsRoute =
+  AuthenticatedMyDocumentsRouteImport.update({
+    id: '/my-documents',
+    path: '/my-documents',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedMyHomeRoute = AuthenticatedMyHomeRouteImport.update({
@@ -122,6 +133,30 @@ const AuthenticatedUnitsRoute = AuthenticatedUnitsRouteImport.update({
   path: '/units',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedVendorDashboardRoute =
+  AuthenticatedVendorDashboardRouteImport.update({
+    id: '/vendor-dashboard',
+    path: '/vendor-dashboard',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedVendorDocumentsRoute =
+  AuthenticatedVendorDocumentsRouteImport.update({
+    id: '/vendor-documents',
+    path: '/vendor-documents',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedVendorExpensesRoute =
+  AuthenticatedVendorExpensesRouteImport.update({
+    id: '/vendor-expenses',
+    path: '/vendor-expenses',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedVendorMaintenanceRoute =
+  AuthenticatedVendorMaintenanceRouteImport.update({
+    id: '/vendor-maintenance',
+    path: '/vendor-maintenance',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -131,6 +166,7 @@ export interface FileRoutesByFullPath {
   '/invitations': typeof AuthenticatedInvitationsRoute
   '/invoices': typeof AuthenticatedInvoicesRoute
   '/maintenance': typeof AuthenticatedMaintenanceRoute
+  '/my-documents': typeof AuthenticatedMyDocumentsRoute
   '/my-home': typeof AuthenticatedMyHomeRoute
   '/my-invoices': typeof AuthenticatedMyInvoicesRoute
   '/my-maintenance': typeof AuthenticatedMyMaintenanceRoute
@@ -141,6 +177,10 @@ export interface FileRoutesByFullPath {
   '/tenant-dashboard': typeof AuthenticatedTenantDashboardRoute
   '/tenants': typeof AuthenticatedTenantsRoute
   '/units': typeof AuthenticatedUnitsRoute
+  '/vendor-dashboard': typeof AuthenticatedVendorDashboardRoute
+  '/vendor-documents': typeof AuthenticatedVendorDocumentsRoute
+  '/vendor-expenses': typeof AuthenticatedVendorExpensesRoute
+  '/vendor-maintenance': typeof AuthenticatedVendorMaintenanceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -150,6 +190,7 @@ export interface FileRoutesByTo {
   '/invitations': typeof AuthenticatedInvitationsRoute
   '/invoices': typeof AuthenticatedInvoicesRoute
   '/maintenance': typeof AuthenticatedMaintenanceRoute
+  '/my-documents': typeof AuthenticatedMyDocumentsRoute
   '/my-home': typeof AuthenticatedMyHomeRoute
   '/my-invoices': typeof AuthenticatedMyInvoicesRoute
   '/my-maintenance': typeof AuthenticatedMyMaintenanceRoute
@@ -160,6 +201,10 @@ export interface FileRoutesByTo {
   '/tenant-dashboard': typeof AuthenticatedTenantDashboardRoute
   '/tenants': typeof AuthenticatedTenantsRoute
   '/units': typeof AuthenticatedUnitsRoute
+  '/vendor-dashboard': typeof AuthenticatedVendorDashboardRoute
+  '/vendor-documents': typeof AuthenticatedVendorDocumentsRoute
+  '/vendor-expenses': typeof AuthenticatedVendorExpensesRoute
+  '/vendor-maintenance': typeof AuthenticatedVendorMaintenanceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -171,6 +216,7 @@ export interface FileRoutesById {
   '/_authenticated/invitations': typeof AuthenticatedInvitationsRoute
   '/_authenticated/invoices': typeof AuthenticatedInvoicesRoute
   '/_authenticated/maintenance': typeof AuthenticatedMaintenanceRoute
+  '/_authenticated/my-documents': typeof AuthenticatedMyDocumentsRoute
   '/_authenticated/my-home': typeof AuthenticatedMyHomeRoute
   '/_authenticated/my-invoices': typeof AuthenticatedMyInvoicesRoute
   '/_authenticated/my-maintenance': typeof AuthenticatedMyMaintenanceRoute
@@ -181,6 +227,10 @@ export interface FileRoutesById {
   '/_authenticated/tenant-dashboard': typeof AuthenticatedTenantDashboardRoute
   '/_authenticated/tenants': typeof AuthenticatedTenantsRoute
   '/_authenticated/units': typeof AuthenticatedUnitsRoute
+  '/_authenticated/vendor-dashboard': typeof AuthenticatedVendorDashboardRoute
+  '/_authenticated/vendor-documents': typeof AuthenticatedVendorDocumentsRoute
+  '/_authenticated/vendor-expenses': typeof AuthenticatedVendorExpensesRoute
+  '/_authenticated/vendor-maintenance': typeof AuthenticatedVendorMaintenanceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -192,6 +242,7 @@ export interface FileRouteTypes {
     | '/invitations'
     | '/invoices'
     | '/maintenance'
+    | '/my-documents'
     | '/my-home'
     | '/my-invoices'
     | '/my-maintenance'
@@ -202,6 +253,10 @@ export interface FileRouteTypes {
     | '/tenant-dashboard'
     | '/tenants'
     | '/units'
+    | '/vendor-dashboard'
+    | '/vendor-documents'
+    | '/vendor-expenses'
+    | '/vendor-maintenance'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -211,6 +266,7 @@ export interface FileRouteTypes {
     | '/invitations'
     | '/invoices'
     | '/maintenance'
+    | '/my-documents'
     | '/my-home'
     | '/my-invoices'
     | '/my-maintenance'
@@ -221,6 +277,10 @@ export interface FileRouteTypes {
     | '/tenant-dashboard'
     | '/tenants'
     | '/units'
+    | '/vendor-dashboard'
+    | '/vendor-documents'
+    | '/vendor-expenses'
+    | '/vendor-maintenance'
   id:
     | '__root__'
     | '/'
@@ -231,6 +291,7 @@ export interface FileRouteTypes {
     | '/_authenticated/invitations'
     | '/_authenticated/invoices'
     | '/_authenticated/maintenance'
+    | '/_authenticated/my-documents'
     | '/_authenticated/my-home'
     | '/_authenticated/my-invoices'
     | '/_authenticated/my-maintenance'
@@ -241,6 +302,10 @@ export interface FileRouteTypes {
     | '/_authenticated/tenant-dashboard'
     | '/_authenticated/tenants'
     | '/_authenticated/units'
+    | '/_authenticated/vendor-dashboard'
+    | '/_authenticated/vendor-documents'
+    | '/_authenticated/vendor-expenses'
+    | '/_authenticated/vendor-maintenance'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -305,6 +370,13 @@ declare module '@tanstack/react-router' {
       path: '/maintenance'
       fullPath: '/maintenance'
       preLoaderRoute: typeof AuthenticatedMaintenanceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/my-documents': {
+      id: '/_authenticated/my-documents'
+      path: '/my-documents'
+      fullPath: '/my-documents'
+      preLoaderRoute: typeof AuthenticatedMyDocumentsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/my-home': {
@@ -377,6 +449,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUnitsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/vendor-dashboard': {
+      id: '/_authenticated/vendor-dashboard'
+      path: '/vendor-dashboard'
+      fullPath: '/vendor-dashboard'
+      preLoaderRoute: typeof AuthenticatedVendorDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/vendor-documents': {
+      id: '/_authenticated/vendor-documents'
+      path: '/vendor-documents'
+      fullPath: '/vendor-documents'
+      preLoaderRoute: typeof AuthenticatedVendorDocumentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/vendor-expenses': {
+      id: '/_authenticated/vendor-expenses'
+      path: '/vendor-expenses'
+      fullPath: '/vendor-expenses'
+      preLoaderRoute: typeof AuthenticatedVendorExpensesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/vendor-maintenance': {
+      id: '/_authenticated/vendor-maintenance'
+      path: '/vendor-maintenance'
+      fullPath: '/vendor-maintenance'
+      preLoaderRoute: typeof AuthenticatedVendorMaintenanceRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -386,6 +486,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedInvitationsRoute: typeof AuthenticatedInvitationsRoute
   AuthenticatedInvoicesRoute: typeof AuthenticatedInvoicesRoute
   AuthenticatedMaintenanceRoute: typeof AuthenticatedMaintenanceRoute
+  AuthenticatedMyDocumentsRoute: typeof AuthenticatedMyDocumentsRoute
   AuthenticatedMyHomeRoute: typeof AuthenticatedMyHomeRoute
   AuthenticatedMyInvoicesRoute: typeof AuthenticatedMyInvoicesRoute
   AuthenticatedMyMaintenanceRoute: typeof AuthenticatedMyMaintenanceRoute
@@ -396,6 +497,10 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedTenantDashboardRoute: typeof AuthenticatedTenantDashboardRoute
   AuthenticatedTenantsRoute: typeof AuthenticatedTenantsRoute
   AuthenticatedUnitsRoute: typeof AuthenticatedUnitsRoute
+  AuthenticatedVendorDashboardRoute: typeof AuthenticatedVendorDashboardRoute
+  AuthenticatedVendorDocumentsRoute: typeof AuthenticatedVendorDocumentsRoute
+  AuthenticatedVendorExpensesRoute: typeof AuthenticatedVendorExpensesRoute
+  AuthenticatedVendorMaintenanceRoute: typeof AuthenticatedVendorMaintenanceRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -404,6 +509,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedInvitationsRoute: AuthenticatedInvitationsRoute,
   AuthenticatedInvoicesRoute: AuthenticatedInvoicesRoute,
   AuthenticatedMaintenanceRoute: AuthenticatedMaintenanceRoute,
+  AuthenticatedMyDocumentsRoute: AuthenticatedMyDocumentsRoute,
   AuthenticatedMyHomeRoute: AuthenticatedMyHomeRoute,
   AuthenticatedMyInvoicesRoute: AuthenticatedMyInvoicesRoute,
   AuthenticatedMyMaintenanceRoute: AuthenticatedMyMaintenanceRoute,
@@ -414,6 +520,10 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedTenantDashboardRoute: AuthenticatedTenantDashboardRoute,
   AuthenticatedTenantsRoute: AuthenticatedTenantsRoute,
   AuthenticatedUnitsRoute: AuthenticatedUnitsRoute,
+  AuthenticatedVendorDashboardRoute: AuthenticatedVendorDashboardRoute,
+  AuthenticatedVendorDocumentsRoute: AuthenticatedVendorDocumentsRoute,
+  AuthenticatedVendorExpensesRoute: AuthenticatedVendorExpensesRoute,
+  AuthenticatedVendorMaintenanceRoute: AuthenticatedVendorMaintenanceRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -427,3 +537,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

@@ -62,7 +62,8 @@ function RoleGuard() {
         <ShieldAlert className="mx-auto h-10 w-10 text-destructive" />
         <h1 className="mt-4 text-xl font-bold text-foreground">Access restricted</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          This area is not part of your portal. You only have access to information relating to your own account.
+          This area is not part of your portal. You only have access to information relating to your
+          own account.
         </p>
         <Button asChild className="mt-5">
           <Link to={home}>Go to my portal</Link>

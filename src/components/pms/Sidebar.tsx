@@ -1,8 +1,19 @@
 import { useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
-  LayoutDashboard, Building2, DoorOpen, Users, Wrench, Receipt, Banknote,
-  Mail, Settings, ChevronDown, FileText, Building, ChevronRight,
+  LayoutDashboard,
+  Building2,
+  DoorOpen,
+  Users,
+  Wrench,
+  Receipt,
+  Banknote,
+  Mail,
+  Settings,
+  ChevronDown,
+  FileText,
+  Building,
+  ChevronRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSession } from "@/lib/session";
@@ -14,6 +25,10 @@ const MAIN: Item[] = [{ label: "Dashboard", to: "/dashboard", icon: LayoutDashbo
 
 const TENANT_MAIN: Item[] = [{ label: "My home", to: "/tenant-dashboard", icon: LayoutDashboard }];
 
+const VENDOR_MAIN: Item[] = [
+  { label: "Dashboard", to: "/vendor-dashboard", icon: LayoutDashboard },
+];
+
 const TENANT_SECTIONS: Section[] = [
   {
     label: "My tenancy",
@@ -21,6 +36,22 @@ const TENANT_SECTIONS: Section[] = [
       { label: "Lease & unit", to: "/my-home", icon: DoorOpen },
       { label: "Invoices & payments", to: "/my-invoices", icon: Receipt },
       { label: "Maintenance", to: "/my-maintenance", icon: Wrench },
+      { label: "Documents", to: "/my-documents", icon: FileText },
+    ],
+  },
+  {
+    label: "Settings",
+    items: [{ label: "General", to: "/settings", icon: Settings }],
+  },
+];
+
+const VENDOR_SECTIONS: Section[] = [
+  {
+    label: "Work",
+    items: [
+      { label: "Maintenance", to: "/vendor-maintenance", icon: Wrench },
+      { label: "Expenses", to: "/vendor-expenses", icon: Receipt },
+      { label: "Documents", to: "/vendor-documents", icon: FileText },
     ],
   },
   {
@@ -66,8 +97,9 @@ export function SidebarContentBody({ onNavigate }: { onNavigate?: () => void }) 
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { data: session } = useSession();
   const isTenant = session?.role === "TENANT";
-  const main = isTenant ? TENANT_MAIN : MAIN;
-  const sections = isTenant ? TENANT_SECTIONS : SECTIONS;
+  const isVendor = session?.role === "VENDOR";
+  const main = isTenant ? TENANT_MAIN : isVendor ? VENDOR_MAIN : MAIN;
+  const sections = isTenant ? TENANT_SECTIONS : isVendor ? VENDOR_SECTIONS : SECTIONS;
   const [open, setOpen] = useState<Record<string, boolean>>({
     Financials: true,
     "Property / Unit": true,
