@@ -6,7 +6,7 @@
   "devCommand": "npm run dev",
   "functions": {
     "server/server.js": {
-      "includeFiles": ["server/**"],
+      "includeFiles": "server/**",
       "runtime": "nodejs20.x"
     }
   },
