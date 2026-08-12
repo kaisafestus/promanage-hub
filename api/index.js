@@ -1,4 +1,4 @@
-import server from '../.server/server.js';
+import server from '../dist/server/server.js';
 
 export default async function fetch(request, env, ctx) {
   try {

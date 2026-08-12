@@ -2,7 +2,7 @@
   "outputDirectory": "dist/client",
   "functions": {
     "api/index.js": {
-      "includeFiles": ".server/**"
+      "includeFiles": "dist/server/**"
     }
   },
   "rewrites": [
