@@ -1,17 +1,3 @@
 {
-  "version": 3,
-  "buildCommand": "vite build",
-  "functions": {
-    "api/index.js": {
-      "includeFiles": "dist/server/**"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/(.*\\.(js|css|png|jpg|jpeg|svg|ico|json|txt|map|woff2?|woff|eot|ttf|otf))$",
-      "destination": "/$1"
-    },
-    { "source": "/api/(.*)", "destination": "/api/index" },
-    { "source": "/(.*)", "destination": "/api/index" }
-  ]
+  "outputDirectory": ".vercel/output"
 }
